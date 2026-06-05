@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Sayfası</title>
+
+</head>
+<h1>Form Sayfam</h1>
+<body>
+    <form>
+    <div class="form">
+        <label for="isim">İsim: </label>
+        <input type="text" id="isim" name="isim" required>
+    </div>
+    <div>
+        <label for="soyiyism">Soyisim: </label>
+        <input type="text" id="soyisim" name="soyisim" required>
+
+    </div>
+    <div class="form">
+        <label for="tel">Telefon: </label>
+        <input type="text" id="tel" name="tel" required>
+
+    </div>
+    <div class="form">
+        <label for="image">Profil Resmi: </label>
+        <input type="file" id="image" name="image" accept="image/*">
+    </div>
+    <button type=" submit">Gönder</button>
+    
+
+        <div id="result">
+            <p id="displayName"></p>
+            <p id="displayPhone"> </p>
+
+        </div>
+            
+        </form>
+        <script>
+            const form= document.getElementById("form");
+            const image= document.getElementById("image");
+            const isim= document.getElementById("isim");
+            const soyisim= document.getElementById("soyisim");
+            const tel= document.getElementById("tel")
+            form.addEventListener('submit',function(event){
+                event.preventDefault();
+            })
+            reader.onload= function(event){
+                
+            }
+            displayName.textContent='${isim} ${soyisim}';
+            displayPhone.textContent= tel
+            resultDiv.style.displayName= 'block';
+            resultDiv.style.displayPhone= 'block';
+
+            const bilgi=document.createElement("p");
+            bilgi.textContent= "İsim:"+ isim + " | Soyisim:"+ soyisim+ "| tel:"+ tel;
+            
+
+        </script>
+    
+    
+</body>
+</html>

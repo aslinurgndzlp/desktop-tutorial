@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document1</title>
+</head>
+<body>
+    <h1>Deneme</h1>
+
+    <p id="yazi">Deneme Basarili</p>
+    <button id="buton">Degiştirmek icin tıkla</button>
+    <script>
+        const tarih= new Date();
+        const buton= document.getElementById('buton');
+        const yazi= document.getElementById('yazi');
+        let tiklanmasayisi= 0;
+        
+        buton.addEventListener('mouseenter' ,function(){
+            console.log("10 saniye geçti!");
+            console.log("Deneme!");
+            console.log("Deneme Basarili");
+            console.log("Degistirmek icin tıkla");
+        
+            
+        setTimeout(function(){ 
+             },10000);
+            
+        }); 
+            
+           
+            
+            
+            
+        
+            
+        
+        buton.addEventListener('click',function(){
+            tiklanmasayisi++;
+            if(tiklanmasayisi % 2 === 0){
+                yazi.textContent='Degiştirme Gercekleşti ';
+            }else{
+                yazi.textContent='Degiştirme Gerceklerşti Yeni ';
+
+            }
+        console.log(tarih);
+        
+
+        
+
+        });
+    </script>
+</body>
+</html>
