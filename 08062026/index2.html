@@ -7,25 +7,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 </head>
 <body class="bg-indigo-50 text-gray-800 font-sans min-h-screen p-8 flex flex-col items-center justify-center gap-6">
+    <!--Sayfanın arka planı,yazı rengini,tipini belirler, sayfanın min yükseklük ekran kadar olur,her yerden 8 boşluk verir,elemanları yatayda
+    ve dikeyde ortalar aralarına 6 birim boşluk verir.-->
     <div class="text-center max-w-md ">
+        <!--yazıları ortalayıp max genişliği leptop boyutu  kadar yapar-->
         <div>
             <h1 class="text-xl font-bold text-gray-900 mb-2">Fiyatlandırma Kartı Flex Column</h1>
+            <!--yazı boyutunu ve kalınlığını,rengini ayarlar,alt taraftan 2birim boşluk bırakır-->
             <p class="text-xs text-gray-500">Kart Elemanlarını Üst Üste Sıralamak için flex-col, öne çıkan rozeti en üstte göstermek için ise order-first sınıfı kullanılacak</p>
+            <!--yazı boyutu ve rengini ayarladık-->
         </div>
         <div class="w-full max-w-xs bg-white border border-gray-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+            <!--genişliği bulunduğu alan kadar,max boyutu xs tuttuk,arka planı beyaz yapıp,yuvarlak kenarlık verdik,6 birim iç boşluk,
+            flexboxla içerikler alt alta dizildi,aralarında 4 brim boşluk ve küçük gölge verdik-->
             <div>
                 <h2 class="text-sm font-bold text-gray-800 uppercase tracking-wider">Standart Paket</h2>
+                <!--Yazı boyutu küçük,kalın,harfler büyük ve araları geniş-->
                 <p class="text-2xl font-extrabold text-gray-900 mt-1">99 TL/Ay </p>
+                <!--yazı boyutu 2xl,extra kalın,üst taraftan boşluk verdik-->
             </div>
             <div class="px-2,5 py-1. bg-indigo-100 border border-indigo-200 text-indigo-700 text-[9px] font-extrabold rounded-full self-start order-first uppercase tracking-wide">
+                <!--Arka plan rengi,dikey ve yatay boşluklar,yazı rengi kenarlıklar verildi,yuvarlar ve olduğu divi en başta soldan başlatır,
+                büyük harf ve harfler arası genişlik-->
                 En Popüler Paket(order-first)
             </div>
             <div class="text-xs text-gray-500 space-y-2 border border-gray-100 pt-4">
+                <!--Yazı boyutu,rengi alt alta gelen öğeler arası boşluk,kenarlıklar ve iç tarfta üstten boşluk verildi-->
                 <p>1 Sınırsız Proje</p>
                 <p>25 tane Kişiisel Proje</p>
                 <p>Grup Çalışması</p>
             </div>
             <button class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold transition-colors mt-2 ">Satın Al</button>
+            <!--tüm genişliği kapladık,dikey boşluk,arka plan,üzerine gelince koyulaşması,yazı rengi,köşelikler,yazı boyutu,kalınlığı,hover geçişi sağlar ve dışardan üstten boşluk verir-->
 
         </div>
         
