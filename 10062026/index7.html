@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body class="p-6 bg-gray-200">
+    <div class="p-6 bg-white">
+        <h1 class="text-xl font-bold">E-Ticatret Sepet Yönetimi</h1>
+        <div class="p-4 border">
+            <h2 class="text-lg font-bold">Ürün Katolog</h2>
+            <div class="mb-2">
+                <input type="text" id="search-input" placeholder="Ürün Adı" class="p-2 border">
+            </div>
+            <button id="btn-search" class="p-2 bg-blue-200">Katolog Güncelle</button>
+            <div class="mt-4 space-y-2" id="product-list">
+                <p class="text-gray-500">ürün Listesini yüklemek İçin Butona Tıklayın</p>
+            </div>
+        </div>
+
+        <div class="mt-2"></div>
+
+        <div class="p-4 border">
+            <h2 class="text-lg font-bold">Alışveriş Sepetim</h2>
+            <ul class="list-disc pl-5 space-y-1" id="cart-list">
+                <li>Sepetiniz Boş</li>
+
+            </ul>
+
+            <div class="mt-2 font-bold">
+                Toplam Tutar:<span id="cart-total">0</span>TL
+
+            </div>
+            <button id="btn-checkout" class="p-2 bg-green-200 mt-2">Alışverişi Tamamla</button>
+        </div>
+
+        <div id="status" class="p-2 border">Sistem Hazır</div>
+        
+    </div>
+
+    <script>
+        const yedekurunler=[
+            {"id":1,"title":'Akıllı Telefon','kategori':'Elektronik','fiyat':'15000','stok':5},
+            {"id":2,"title":'Ceket','kategori':'Giyim','fiyat':'5000','stok':0},
+            {"id":3,"title":'Kuru Fasülye','kategori':'Yemek','fiyat':'150000','stok':2},
+            {"id":4,"title":'Ceket','kategori':'Giyim','fiyat':'200','stok':1},
+            {"id":5,"title":'Kulaklık','kategori':'Elektronik','fiyat':'52000','stok':5},
+            {"id":6,"title":'Etek','kategori':'Giyim','fiyat':'3000','stok':0},
+            {"id":7,"title":'Tavuk Dürüm','kategori':'Yemek','fiyat':'2345000','stok':1},
+            {"id":8,"title":'Döner','kategori':'Yemek','fiyat':'1234000','stok':2},
+            {"id":9,"title":'Spor Ayakkabı','kategori':'Ayakkabı','fiyat':'1540','stok':6},
+            {"id":10,"title":'Bilgisayar','kategori':'Elektronik','fiyat':'454000','stok':5}
+        
+        ]
+
+        let sepet =[];
+
+        const urunleriSorgula=async()=>{
+            const searchVal=document.getElementById('search-input').value.toLowerCase();
+            const listDiv=document.getElementById('product-list');
+            const status=document.getElementById('status');
+
+            status.innerText="Ürünler Listeleniyor....";
+            status.className='p-2 border';
+
+            let urunler=[];
+
+            try{
+                const response = await axios.get('https://kodusta.com/api/urunler.json');
+                urunler=response.data;
+            } catch(hata){
+              console.warn('Cors hatası veya bağlantı hatası');
+              urunler=yedekurunler;  
+            }
+
+            const filtrelenmis=urunler.filter(u=>title.toLowerCase().includes(searchVal));
+
+            listDiv.innerHTML="";
+            if(filtrelenmis.length===0){
+                listDiv.innerHTML='<p class="p-2 text-red-500">Ürün Bulunamadı</p>';
+                return;
+            }
+
+            filtrelenmis.forEach(urun=>{
+                const itemDiv=document.createElement('div');
+                    itemDiv.className="p-2 border";
+
+                    itemDiv.innerHTML=`<strong>${urun.title}</strong> -Kategori: ${urun.kategori}<br>
+                    Fiyat:${urun.fiyat}TL |Stok: ${urun.stok> 0 ? urun.stok:'Tükenmiş'}<br>
+                    <button class="p-1 bg-yellow-200 text-xs onclick="sepeteEkleTiklandi(${urun.id})">Sepete Ekle</button> `;
+
+                    listDiv.appendChild(itemDiv);
+                
+            })
+        }
+    </script>
+    
+</body>
+</html>
