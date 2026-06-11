@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/5.0.4/typescript.min.js"></script>
+    <title>Document</title>
+</head>
+<body class="p-6 bg-green-200">
+    <div class="p-6 bg-white">
+        <h1 class="text-xl font-bold">Readonly ve Opsiyonel Arayüz Özellikleri</h1>
+        <div id="customer-card" class="p-4 border">Yükleniyor</div>
+        <div>
+            <div>
+                <label class="block">İsim Güncelle</label>
+                <input type="text" id="inp-name" class="p-1 border">
+            </div>
+
+            <div>
+                <label class="block">E-posta Güncelle(opsiyonel)</label>
+                <input type="text" id="inp-email" class="p-1 border">
+            </div>
+            <button id="btn-update" class="p-2 bg-yellow-200">Bilgileri Güncelle</button>
+        </div>
+    </div>
+
+
+    <script>
+        window.addEventListener('DOMContentLoaded',()=>{
+            document.querySelectorAll('script[type="text/typescript"]').forEach(script=>{
+                const js=window.ts.transpile(script.textContent);
+                const newScript=document.createElement('script');
+                newScript.textContent=js;
+                document.body.appendChild(newScript);
+            })
+        })
+    </script>
+
+    <script type="text/typescript">
+        interface Musteri{
+            readonly tcNo:string;
+            isim:string;
+            eposta?:string;
+        }
+
+        const musteri={
+            tcNo:"111112222223333",
+            isim:"Ali Veli Onur"
+        }
+
+        const out=document.getElementById('customer-card') as HTMLDivElement;
+
+        const musteriGoster=()=>{
+            out.innerHTML=`
+            <strong>Müşteri Kartı:</strong><br>
+            Tc No (readonly): ${musteri.tcNo}<br>
+            İsim ${musteri.isim}<br>
+            E-posta: ${musteri.eposta ? musteri.eposta : "Eklenmemiş"}`;
+
+        }
+        musteriGoster();
+
+        document.getElementById('btn-update').addEventListener('click', ()=>{
+            const nameVal=(document.getElementById('inp-name') as HTMLInputElement).value;
+            const emailVal=(document.getElementById('inp-email') as HTMLInputElement).value;
+
+            if(nameVal){
+                musteri.isim=nameVal;
+            }
+            if(emailVal){
+                musteri.eposta=emailVal;
+            }else{
+                delete musteri.eposta;
+            }
+            musteriGoster();
+        })
+
+    </script>
+    
+</body>
+</html>
