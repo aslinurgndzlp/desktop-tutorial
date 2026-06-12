@@ -57,6 +57,7 @@
         ]
 
         let sepet =[];
+        let hazirUrunler =[];
 
         const urunleriSorgula=async()=>{
             const searchVal=document.getElementById('search-input').value.toLowerCase();
@@ -77,6 +78,7 @@
             }
 
             const filtrelenmis=urunler.filter(u=>u.title.toLowerCase().includes(searchVal));
+            hazirUrunler =filtrelenmis;
 
             listDiv.innerHTML="";
             if(filtrelenmis.length===0){
@@ -130,7 +132,7 @@
             status.innerText="Stok Sorgulanıyor...";
             status.className="p-2 border";
 
-            const urun=yedekurunler.find(u=>u.id===urunID);
+            const urun=hazirUrunler.find(u=>u.id===urunID);
 
 
             try{
