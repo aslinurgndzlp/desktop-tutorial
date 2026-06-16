@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-
+/*useState le veriyi tek seferlik ekranı güncelleyene kadar tutmak ve useEffectle sayfa açılınca işlemler yapmak için özelliklerini ekliyoruz*/
+/*Dışarıdan veri aktarıp,seçili kategoriyi,sepetAdedi,basınca sepeti açma,arama kutusuna yazı girme ve yazdıkça değişen verileri oluşturduk*/ 
 export default function Baslik({ env, sepetAdedi, onSepetAc, searchVal, onSearchChange }) {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight
   });
+  /*Tarayıcı genişliği ve yüksekliğini ayarlar*/
 
   useEffect(() => {
     const handleResize = () => {
@@ -13,17 +15,20 @@ export default function Baslik({ env, sepetAdedi, onSepetAc, searchVal, onSearch
         height: window.innerHeight
       });
     };
+    /*Ekran boyutu değişince setWindowSizela oldu ekrana göre ayarlanıcak  */
 
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  /*Sadece sayfa ilk açıldığında ekranı ayarlar */
 
   const getEnvName = (cat) => {
     if (cat === "all") return "TÜM KATEGORİLER";
     return cat.toUpperCase();
   };
+  /*Başlangıçta tüm kategorileri seçip döndürür ve büyük harflerle yazar */
 
   return (
     <header className="eticaret-header">
@@ -39,6 +44,7 @@ export default function Baslik({ env, sepetAdedi, onSepetAc, searchVal, onSearch
             placeholder="Ürün, kategori veya marka ara..."
             value={searchVal}
             onChange={(e) => onSearchChange(e.target.value)}
+            /*Kullanıcı arama alanına yazı yazınca çalışan değer */
             className="arama-input"
           />
           <button className="arama-butonu">Ara</button>
@@ -53,7 +59,7 @@ export default function Baslik({ env, sepetAdedi, onSepetAc, searchVal, onSearch
             {sepetAdedi > 0 && (
               <span className="sepet-sayac-rozet">{sepetAdedi}</span>
             )}
-          </button>
+          </button>/*Sepet adeti sıfırdan büyükse ekranda göster */
         </div>
       </div>
 

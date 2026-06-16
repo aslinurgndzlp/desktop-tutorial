@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+/*Tekar hesaplamaları önlemesi için hafıza tutulan değer import ediyoruz */
 
 export default function SepetGezgini({
   sepet,
@@ -10,16 +11,18 @@ export default function SepetGezgini({
 
   const toplamFiyat = useMemo(() => {
     return sepet.reduce((toplam, item) => toplam + item.fiyat * item.adet, 0);
-  }, [sepet]);
+  }, [sepet]);/*Toplam fiyatı hesaplamak için ürünle fiyatı çarpıp hepsini toplayıp hafızada tutuyor,sepete eklene ürünlerde değişiyor. */
 
   const kargoLimit = 1500;
   const kargoUcreti = toplamFiyat >= kargoLimit || toplamFiyat === 0 ? 0 : 50;
   const kalanTutar = Math.max(0, kargoLimit - toplamFiyat);
   const ilerlemeYuzdesi = Math.min((toplamFiyat / kargoLimit) * 100, 100);
+  /*eğer kargo tutarı 1500 üstüyse bedava değilse 50 tl.Toplam tutardan kargo ücretini çıkarıp kalan tutarı öğrenir*/
 
   const drawerClass = `sepet-drawer ${isOpen ? "sepet-drawer-visible" : "sepet-drawer-hidden"}`;
-
+/*Eğer sepet açıksa true olur görünür kapalıysa false görünmez */
   if (!isOpen) return null;
+  /*Eğer açık değilse sepet hiç bir şey döndürme */
 
   return (
     <>

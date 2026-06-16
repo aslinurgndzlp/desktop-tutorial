@@ -4,7 +4,7 @@ import KampanyaBanner from "./components/KampanyaBanner";
 import UrunListesi from "./components/UrunListesi";
 import UrunDetayi from "./components/UrunDetayi";
 import SepetGezgini from "./components/SepetGezgini";
-
+/*yaptığımız sayfları tek bir sayfada gözükmesi için import ettik */
 export default function App() {
   const [products, setProducts] = useState([]);
   const [sepet, setSepet] = useState([]);
@@ -21,39 +21,39 @@ export default function App() {
         if (!res.ok) {
           throw new Error(`Katalog yüklenemedi. Sunucu hata kodu: ${res.status}`);
         }
-        return res.json();
+        return res.json();/*jsondan çektiğimiz ürünler gelmediyse ekrana hata mesajı ver */
       })
-      .then((data) => {
+      .then((data) => {/*Eğer veriler geldiyse çalıştır */
         setProducts(data);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch((err) => {/*Hata varsa eror mesajı yazdırır */
         setError(err.message);
-        setLoading(false);
+        setLoading(false);/*Yüklemeyi durdurur,bitirir */
       });
-  }, []);
+  }, []);/*Sadece ilk sayfa açılışında çalışır */
 
-  const displayProducts = useMemo(() => {
+  const displayProducts = useMemo(() => {/*Önce tüm kategorileri gösterir sonra sadece seçili kategoriyi filtreler */
     const filtered = currentCategory === "all"
       ? products
       : products.filter((item) => item.kategori === currentCategory);
 
     return filtered.map((item) => {
-      const sepetUrun = sepet.find((c) => c.id === item.id);
+      const sepetUrun = sepet.find((c) => c.id === item.id);/*Sepetteki her ürünü dolaşır aynı ürün vaar mı bakar */
       const sepetAdet = sepetUrun ? sepetUrun.adet : 0;
       return {
         ...item,
-        stok: Math.max(0, item.stok - sepetAdet)
+        stok: Math.max(0, item.stok - sepetAdet)/*Ürün sepette varsa sepetteki adet kadar stoktan azaltır */
       };
     });
   }, [products, currentCategory, sepet]);
 
   const selectedProduct = useMemo(() => {
     return displayProducts.find((p) => p.id === selectedProductId) || null;
-  }, [displayProducts, selectedProductId]);
+  }, [displayProducts, selectedProductId]);/*Seçilen ürünlerin listede idleriyle arıyor bulumazsa bırakıyor */
 
   const handleSepeteEkle = useCallback((urun) => {
-    if (urun.stok <= 0) return;
+    if (urun.stok <= 0) return;/*Eğer ürünün stoğu 0dan küçük eşitse sepete ekleme */
 
     setSepet((prevSepet) => {
       const varOlan = prevSepet.find((item) => item.id === urun.id);
@@ -61,39 +61,39 @@ export default function App() {
         return prevSepet.map((item) =>
           item.id === urun.id ? { ...item, adet: item.adet + 1 } : item
         );
-      }
+      }/*Eğer sepetimizde ürün idsiyle yeni seçilip eklenen ürünün idsi eşleşirse adeti 1 arttır. */
       return [...prevSepet, { id: urun.id, ad: urun.ad, fiyat: urun.fiyat, adet: 1 }];
     });
   }, []);
 
   const handleAdetGuncelle = useCallback((productId, yeniAdet) => {
     const anaUrun = products.find((p) => p.id === productId);
-    if (!anaUrun) return;
+    if (!anaUrun) return;/*Eğer seçilen yeni ürün idsini eşliycek sepette hiç ürün yoksa döngüden çık */
 
     if (yeniAdet <= 0) {
       setSepet((prev) => prev.filter((item) => item.id !== productId));
-      return;
+      return;/*yeni adet sıfırsa ürünü sil */
     }
 
     if (yeniAdet > anaUrun.stok) {
       alert(`Üzgünüz, bu üründen en fazla ${anaUrun.stok} adet ekleyebilirsiniz.`);
       return;
-    }
+    }/*Yeni ürün adeti stoktaki ana üründen fazlaysa ekrana en fazla ekleyebileceği adeti göster */
 
     setSepet((prev) =>
       prev.map((item) =>
         item.id === productId ? { ...item, adet: yeniAdet } : item
       )
-    );
+    );/*Sepetteki ürünleri tarar */
   }, [products]);
 
   const handleUrunCikar = useCallback((productId) => {
     setSepet((prev) => prev.filter((item) => item.id !== productId));
-  }, []);
+  }, []);/*Aynı idli ürünleri listeden çıkarmaya yarar  */
 
   const handleCategoryChange = useCallback((newCat) => {
     setCurrentCategory(newCat);
-  }, []);
+  }, []);/*Yeni bir kategori seçilir ve ordaki ürünler yeniden filtrelenir */
 
   return (
     <div className="app-container">
