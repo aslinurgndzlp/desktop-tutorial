@@ -23,16 +23,23 @@
             count += e;
             console.log(count);
             number.textContent=count;
+            
+
+            let intensity=Math.min(Math.abs(count)*12.255);
+            
             if(count >0){
                 box.className="bg-green-100 p-8 rounded-xl shadow text-center transition-colors duration-300"
+                box.style.backgroundColor='rgb(${255- intensity}, 255,${255-intensity})';
 
             }else if(count <0){
                 box.className="bg-red-100 p-8 rounded-xl shadow text-center transition-colors duration-300"
+                box.style.backgroundColor='rgb(255, ${255-intensity},${255-intensity})';
 
             }else{
                 box.className="bg-white-100 p-8 rounded-xl shadow text-center transition-colors duration-300"
 
             }
+
         }
 
     </script>
