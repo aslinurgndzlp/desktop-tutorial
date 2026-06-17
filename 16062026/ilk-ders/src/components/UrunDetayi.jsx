@@ -8,19 +8,23 @@ export default function UrunDetayi({ product, onClose, onSepeteEkle }) {
       }
     };
     window.addEventListener("keydown", handleKeyDown);
+    /*Klavyede esc tuşuna basınca urun detayı kutusu kapanır */
     
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onClose]);
+  /*Kutu kapandıktan sonra dinlemeyi bırakır,onClose değişirse,kutu açılırsa yeniden çalışır */
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
+    /*Sayfanın kaymasını engeller */
     
     return () => {
       document.body.style.overflow = "";
     };
   }, []);
+  /*Kutu kapanınca sayfa eski haline geri döner */
 
   useEffect(() => {
     if (product) {
@@ -37,20 +41,20 @@ export default function UrunDetayi({ product, onClose, onSepeteEkle }) {
       return {
         level: "danger",
         text: "Tükendi: Bu ürün geçici olarak temin edilemiyor."
-      };
+      };/*Eğer ürün yoksa bir şey yazma ve stok durumunu kontrol et,0 a eşitse ekrana uyarıları yazdır */
     }
     if (product.stok < 5) {
       return {
         level: "warning",
         text: `Düşük Stok: Bu üründen son ${product.stok} adet kaldı!`
-      };
+      };/*Stok durumu 5 den azsa ekrana uyarıları yazdır */
     }
-    return null;
+    return null;/*Bunlar dıışında uyarı gösterme */
   };
 
   const warning = getInventoryWarning();
 
-  if (!product) return null;
+  if (!product) return null;/*Eğer ürün yoksa da bir şey gösterme */
 
   return (
     <div onClick={onClose} className="modal-maske">

@@ -15,7 +15,7 @@ export default function UrunListesi({
     (item) =>
       item.ad.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.marka.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  );/*Arama kutusuna yazılan texte göre ürünleri ad ve markalarına göre listeliyor, küçük harfe çevirir */
 
   return (
     <div className="app-card">
