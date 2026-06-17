@@ -1,4 +1,4 @@
-export default function ProductCard({product}) {
+export default function ProductCard({product,addToCart}) {
   return (
     <>
       <div className="product-card">
@@ -15,7 +15,7 @@ export default function ProductCard({product}) {
             </div>
             <div className="product-price-container">
                 <span className="product-price">{product.price} TL</span>
-                <button className="product-btn">
+                <button className="product-btn" onClick={() => addToCart(product)}>
                     <span>+</span>
                 </button>
             </div>

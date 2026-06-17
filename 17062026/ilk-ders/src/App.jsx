@@ -5,6 +5,7 @@ import ProductGrid from "./components/ProductGrid";
 import Footer from "./components/Footer";
 import AddProductForm from "./components/AddProductForm";
 import { MOCK_PRODUCTS, MOCK_CATEGORIES } from "./productsMock";
+import AddCart from "./components/AddCart.";
 import { useState } from "react";
 function App() {
   const [products, setProducts] = useState(MOCK_PRODUCTS);
@@ -12,6 +13,7 @@ function App() {
   const [view, setView] = useState("home");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchInput, setSearchInput] = useState("");
+  const [cartItems, setCartItems] = useState([]);
 
   const handleAddProduct=(data)=>{
     const newProduct={
@@ -42,6 +44,61 @@ function App() {
     setSearchQuery(searchInput);
   };
 
+  const addToCart = (product) => {
+  const existingProduct = cartItems.find(
+    (item) => item.id === product.id
+  );
+
+  if (existingProduct) {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === product.id
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
+          : item
+      )
+    );
+  } else {
+    setCartItems([
+      ...cartItems,
+      {
+        ...product,
+        quantity: 1,
+      },
+    ]);
+  }
+};
+
+const increaseQuantity = (id) => {
+  setCartItems(
+    cartItems.map((item) =>
+      item.id === id
+        ? {
+            ...item,
+            quantity: item.quantity + 1,
+          }
+        : item
+    )
+  );
+};
+
+const decreaseQuantity = (id) => {
+  setCartItems(
+    cartItems
+      .map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              quantity: item.quantity - 1,
+            }
+          : item
+      )
+      .filter((item) => item.quantity > 0)
+  );
+};
+
   return (
     <>
       <Header
@@ -51,6 +108,7 @@ function App() {
         setSearchQuery={setSearchQuery}
         setSelectedCategory={setSelectedCategory}
         setView={setView}
+        cartItems={cartItems}
       />
       <Navbar
         categories={MOCK_CATEGORIES}
@@ -84,7 +142,7 @@ function App() {
                 </p>
               </div>
             ) : (
-              <ProductGrid products={filteredProducts} />
+              <ProductGrid products={filteredProducts}addToCart={addToCart} />
             )}
           </div>
         </main>
