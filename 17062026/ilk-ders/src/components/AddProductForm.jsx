@@ -13,7 +13,7 @@ export default function AddProductForm({ categories, setView, onAddProduct }) {
   };
   return (
     <>
-       <main className="container">
+      <main className="container">
         <div className="form-layout">
           <h2 className="form-title">Yeni Ürün Ekle</h2>
           <form onSubmit={handleSubmit(onSubmit)}>

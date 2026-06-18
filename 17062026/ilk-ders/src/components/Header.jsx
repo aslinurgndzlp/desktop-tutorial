@@ -5,7 +5,7 @@ export default function Header({
   setSelectedCategory,
   setSearchQuery,
   setView,
-  cartItems,
+  
 }) {
   const handleLogoClick = () => {
     setView("home");
@@ -39,7 +39,7 @@ export default function Header({
             </div>
             <div className="action-item" onClick={() => setView("cart")}>
               <span>Sepetim</span>
-              <span className="badge">{cartItems.length}</span>
+              <span className="badge">0</span>
             </div>
           </div>
         </div>

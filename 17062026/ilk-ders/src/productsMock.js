@@ -82,3 +82,30 @@ export const MOCK_PRODUCTS = [
 ];
 
 export const MOCK_CATEGORIES = ["Tümü", "Telefon", "Bilgisayar", "Aksesuar", "Moda", "Ev & Yaşam"];
+
+export const ABOUT_DATA = {
+  subtitle: "Biz Kimiz?",
+  title: "n11clone Hakkında",
+  text1: "n11clone, Türkiye'nin lider e-ticaret platformlarından n11'den ilham alarak geliştirilmiş, alıcılar ile satıcıları buluşturan yenilikçi ve güvenilir bir alışveriş pazaryeri prototipidir.",
+  text2: "Amacımız, kullanıcılara en yeni teknolojileri ve şık tasarım standartlarını sunarak kusursuz bir e-ticaret deneyimi sağlamaktır. Modern bileşen mimarimiz ve optimize edilmiş veri yönetimi modellerimiz ile geleceğin alışveriş altyapısını bugünden inşa ediyoruz.",
+  values: [
+    { title: "Güvenilirlik", desc: "Ödeme ve veri güvenliğinde en üst düzey standartları benimsiyoruz." },
+    { title: "Yenilikçilik", desc: "Modern web teknolojilerini takip ederek sürekli gelişim sağlıyoruz." },
+    { title: "Kullanıcı Odaklılık", desc: "Kullanıcılarımızın geri bildirimlerini dinliyor ve önemsiyoruz." }
+  ]
+};
+
+export const FAQ_DATA = [
+  {
+    q: "Siparişim ne zaman kargolanır?",
+    a: "Satıcılarımız siparişlerinizi genellikle 24 saat içerisinde kargoya teslim eder. Kargo takip bilgileri e-posta adresinize gönderilir."
+  },
+  {
+    q: "İade sürecini nasıl başlatırım?",
+    a: "Hesabım sayfasındaki Siparişlerim alanından ilgili ürünü seçerek 'İade Talebi Oluştur' butonuna basabilir ve ücretsiz kargo kodunuzu alabilirsiniz."
+  },
+  {
+    q: "Ödeme seçenekleri nelerdir?",
+    a: "Tüm kredi kartları, banka kartları ve BKM Express aracılığıyla güvenli ödeme yapabilirsiniz. Taksit seçenekleri ürün sayfasında gösterilmektedir."
+  }
+];

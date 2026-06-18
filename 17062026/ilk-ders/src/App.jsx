@@ -3,17 +3,26 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import ProductGrid from "./components/ProductGrid";
 import Footer from "./components/Footer";
+import { useState } from "react";
 import AddProductForm from "./components/AddProductForm";
 import { MOCK_PRODUCTS, MOCK_CATEGORIES } from "./productsMock";
-import AddCart from "./components/AddCart.";
-import { useState } from "react";
+import AboutUs from "./components/AboutUs";
+import HelpCenter from "./components/HelpCenter";
+import OrderTracking from "./components/OrderTracking";
+import ProductReturns from "./components/ProductReturns";
+import CategoriesList from "./components/CategoriesList";
+import ProductDetail from "./components/ProductDetail";
+import CartDrawer from "./components/CartDrawer";
+import LoginModel from "./components/LoginModel";
+
 function App() {
   const [products, setProducts] = useState(MOCK_PRODUCTS);
   const [selectedCategory, setSelectedCategory] = useState("Tümü");
   const [view, setView] = useState("home");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchInput, setSearchInput] = useState("");
-  const [cartItems, setCartItems] = useState([]);
+  const [isLoginOpen,setIsLoginOpen]=useState(false);
+ 
 
   const handleAddProduct=(data)=>{
     const newProduct={
@@ -30,6 +39,12 @@ function App() {
     setProducts([newProduct,...products]);
   }
 
+
+
+
+
+
+
   const filteredProducts = products.filter((p) => {
     const matchesCategory =
       selectedCategory === "Tümü" || p.category === selectedCategory;
@@ -44,61 +59,6 @@ function App() {
     setSearchQuery(searchInput);
   };
 
-  const addToCart = (product) => {
-  const existingProduct = cartItems.find(
-    (item) => item.id === product.id
-  );
-
-  if (existingProduct) {
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === product.id
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
-          : item
-      )
-    );
-  } else {
-    setCartItems([
-      ...cartItems,
-      {
-        ...product,
-        quantity: 1,
-      },
-    ]);
-  }
-};
-
-const increaseQuantity = (id) => {
-  setCartItems(
-    cartItems.map((item) =>
-      item.id === id
-        ? {
-            ...item,
-            quantity: item.quantity + 1,
-          }
-        : item
-    )
-  );
-};
-
-const decreaseQuantity = (id) => {
-  setCartItems(
-    cartItems
-      .map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              quantity: item.quantity - 1,
-            }
-          : item
-      )
-      .filter((item) => item.quantity > 0)
-  );
-};
-
   return (
     <>
       <Header
@@ -108,7 +68,6 @@ const decreaseQuantity = (id) => {
         setSearchQuery={setSearchQuery}
         setSelectedCategory={setSelectedCategory}
         setView={setView}
-        cartItems={cartItems}
       />
       <Navbar
         categories={MOCK_CATEGORIES}
@@ -128,7 +87,7 @@ const decreaseQuantity = (id) => {
           <div className="content-area">
             <div className="content-header">
               <h1 className="page-title">
-                {selectedCategory} {searchQuery && `> "${searchQuery}"`} Ürünler
+                {selectedCategory} {searchQuery && `-> "${searchQuery}"`} Ürünler
               </h1>
               <span className="text-sm">
                 Toplam {filteredProducts.length} Ürün
@@ -137,12 +96,12 @@ const decreaseQuantity = (id) => {
 
             {filteredProducts.length === 0 ? (
               <div className="text-center py-10">
-                <p className="text-red-500">
+                <p className="text-red-900">
                   Aradığınız kriterlere uygun ürün bulunamadı.
                 </p>
               </div>
             ) : (
-              <ProductGrid products={filteredProducts}addToCart={addToCart} />
+              <ProductGrid products={filteredProducts} />
             )}
           </div>
         </main>
@@ -151,6 +110,16 @@ const decreaseQuantity = (id) => {
         setView={setView} onAddProduct={handleAddProduct}
         />
       )}
+      <ProductDetail/>
+      <CategoriesList/>
+      <AboutUs/>
+      <HelpCenter/>
+      <OrderTracking/>
+      <ProductReturns/>
+      <CartDrawer/>
+      <LoginModel isOpen={isLoginOpen}
+      onClose={()=>setIsLoginOpen(false)}
+      />
       <Footer />
     </>
   );
