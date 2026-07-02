@@ -1,0 +1,92 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "E-Ticaret Arayüz Tasarımı",
+      "clientId": "101",
+      "status": "in_progress",
+      "budget": 12500,
+      "dueDate": "2026-07-15",
+      "tasks": [
+        {
+          "id": "t1",
+          "text": "Wireframe Çizimi",
+          "completed": true
+        },
+        {
+          "id": "t2",
+          "text": "UI Kit Hazırlanması",
+          "completed": false
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Mobil Uygulama Geliştirme",
+      "clientId": "102",
+      "status": "completed",
+      "budget": 45000,
+      "dueDate": "2026-06-30",
+      "tasks": [
+        {
+          "id": "t3",
+          "text": "API Entegrasyonu",
+          "completed": true
+        },
+        {
+          "id": "t4",
+          "text": "App Store Yayını",
+          "completed": true
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "SEO ve Dijital Pazarlama",
+      "clientId": "103",
+      "status": "in_progress",
+      "budget": 8000,
+      "dueDate": "2026-08-01",
+      "tasks": [
+        {
+          "id": "t5",
+          "text": "Anahtar Kelime Analizi",
+          "completed": true
+        },
+        {
+          "id": "t6",
+          "text": "Aylık Raporlama Şablonu",
+          "completed": false
+        }
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "id": "101",
+      "name": "Ahmet Yılmaz",
+      "company": "Kuzey Yazılım",
+      "email": "ahmet@kuzeyyazilim.com",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb"
+    },
+    {
+      "id": "102",
+      "name": "Elif Demir",
+      "company": "Vadi Teknoloji",
+      "email": "elif@vaditek.com",
+      "avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
+    },
+    {
+      "id": "103",
+      "name": "Can Özkan",
+      "company": "Bulut Ajans",
+      "email": "can@bulutajans.com",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+    }
+  ],
+  "settings": {
+    "darkMode": false,
+    "notificationsEnabled": true
+  },
+  "$schema": "./node_modules/json-server/schema.json"
+}

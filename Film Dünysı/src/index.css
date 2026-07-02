@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary-color: #6366F1;
+  --secondary-color: #64748B;
+  --bg-color: #0F172A;
+  --card-bg: #1E293B;
+  --surface-color: #334155;
+  --text-color: #F8FAFC;
+  --muted-text: #CBD5E1;
+  --success-color: #10B981;
+  --warning-color: #F59E0B;
+  --danger-color: #EF4444;
+
+  --sans-font: 'Inter', sans-serif;
+  --heading-font: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--sans-font);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+/* Base modifications for Bootstrap utility classes to match theme */
+.bg-dark-custom {
+  background-color: var(--bg-color) !important;
+}
+
+.bg-card-custom {
+  background-color: var(--card-bg) !important;
+}
+
+.text-muted-custom {
+  color: var(--muted-text) !important;
+}
+
+/* Glassmorphism details */
+.glass-nav {
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Hero Section or backdrop style overlay */
+.backdrop-overlay {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.9) 80%, #0F172A 100%);
+}
+
+/* Custom cards styling with subtle zoom and border effect */
+.movie-card-hover {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.movie-card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* Custom badges */
+.badge-rating {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: var(--warning-color);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  font-weight: 600;
+}
+
+/* Custom buttons */
+.btn-primary-custom {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary-custom:hover {
+  background-color: #4f46e5;
+  color: #fff;
+}
+
+.btn-primary-custom:active {
+  transform: scale(0.97);
+}
+
+/* Custom Modals matching theme */
+.modal-content-custom {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.modal-header-custom {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.modal-footer-custom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Loader / Spinner */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.spinner-custom {
+  color: var(--primary-color);
+}
+
+/* Image container ratio locks */
+.aspect-ratio-poster {
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background-color: var(--surface-color);
+}
+
+.aspect-ratio-backdrop {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background-color: var(--surface-color);
+}
+
+.aspect-ratio-profile {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background-color: var(--surface-color);
+}
